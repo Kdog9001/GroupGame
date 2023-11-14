@@ -262,6 +262,10 @@ MonoBehaviour:
   Blocking: 0
   PlayerTwo: {fileID: 1951200517}
   p2Script: {fileID: 0}
+  stabtime: 0.5
+  stabSpeed: 15
+  HReady: 0
+  LReady: 0
 --- !u!54 &304222868
 Rigidbody:
   m_ObjectHideFlags: 0

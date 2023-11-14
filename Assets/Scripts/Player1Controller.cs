@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Player1Controller : MonoBehaviour
@@ -12,9 +13,14 @@ public class Player1Controller : MonoBehaviour
     public bool Blocking;
     public GameObject PlayerTwo;
     public Player2Controller p2Script;
+    public float stabtime = 1;
+    public float stabSpeed = 15;
+    private string attack;
+    public bool HReady;
+	public bool LReady;
 
 
-    void Start()
+	void Start()
     {
         p2Script = PlayerTwo.GetComponent<Player2Controller>();
     }
@@ -26,9 +32,26 @@ public class Player1Controller : MonoBehaviour
         AttackHigh();
         AttackLow();
         Block();
-    }
+        if (attack == "HS")
+        {
+            HSword.transform.Translate(Vector3.right * stabSpeed * Time.deltaTime);
+        }
+        else if(attack == "HSR")
+        {
+			HSword.transform.Translate(Vector3.left * stabSpeed * Time.deltaTime);
+		}
+		if (attack == "LS")
+		{
+			LSword.transform.Translate(Vector3.right * stabSpeed * Time.deltaTime);
+		}
+		else if (attack == "LSR")
+		{
+			LSword.transform.Translate(Vector3.left * stabSpeed * Time.deltaTime);
+		}
 
-    void Move()
+	}
+
+	void Move()
     {
         if (Input.GetKey("d"))
         {
@@ -60,10 +83,38 @@ public class Player1Controller : MonoBehaviour
             HSword.SetActive(true);
             LSword.SetActive(false);
             BSword.SetActive(false);
+            HReady = true;
         }
-    }
+        if (HReady == true && Input.GetKeyDown("z"))
+        {
+			StartCoroutine("HighStab");
+        }
 
-    void AttackLow()
+    }
+    IEnumerator HighStab()
+    {
+        attack = "HS";
+        yield return new WaitForSeconds(stabtime);
+        attack = "HSR";
+        yield return new WaitForSeconds(stabtime);
+        attack = "";
+        //transform.Translate(Vector3.right * speed * Time.deltaTime);
+
+    }
+	IEnumerator LowStab()
+	{
+		attack = "LS";
+		yield return new WaitForSeconds(stabtime);
+        attack = "LSR";
+
+		yield return new WaitForSeconds(stabtime);
+		attack = "";
+		//transform.Translate(Vector3.right * speed * Time.deltaTime);
+
+	}
+
+
+	void AttackLow()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -72,7 +123,11 @@ public class Player1Controller : MonoBehaviour
             LSword.SetActive(true);
             BSword.SetActive(false);
         }
-    }
+		if (LReady == true && Input.GetKeyDown(KeyCode.Space))
+		{
+			LowStab();
+		}
+	}
 
     private void OnTriggerEnter(Collider other)
     {

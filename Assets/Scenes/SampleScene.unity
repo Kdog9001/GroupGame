@@ -875,7 +875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6576219786482395205, guid: 6e73cb0e6fc873c43a1a4a3644e2f513, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.87
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 6576219786482395205, guid: 6e73cb0e6fc873c43a1a4a3644e2f513, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1002,8 +1002,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1951200521}
     m_Modifications:
     - target: {fileID: 2758084788854918042, guid: 05cfae603ca8a864dbb646bcf67318c2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5944941
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758084788854918042, guid: 05cfae603ca8a864dbb646bcf67318c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.06
+      value: -1.35
       objectReference: {fileID: 0}
     - target: {fileID: 2758084788854918042, guid: 05cfae603ca8a864dbb646bcf67318c2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1011,7 +1015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2758084788854918042, guid: 05cfae603ca8a864dbb646bcf67318c2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.58000004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2758084788854918042, guid: 05cfae603ca8a864dbb646bcf67318c2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1044,6 +1048,10 @@ PrefabInstance:
     - target: {fileID: 7220651226804804895, guid: 05cfae603ca8a864dbb646bcf67318c2, type: 3}
       propertyPath: m_Name
       value: P2 Sword Block
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220651226804804895, guid: 05cfae603ca8a864dbb646bcf67318c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7220651226804804895, guid: 05cfae603ca8a864dbb646bcf67318c2, type: 3}
       propertyPath: m_TagString
@@ -1153,8 +1161,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 304222866}
     m_Modifications:
     - target: {fileID: 2475020168048789350, guid: e76985acc58d7cb4b88fa5de6eafb350, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.594494
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475020168048789350, guid: e76985acc58d7cb4b88fa5de6eafb350, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.06
+      value: 1.35
       objectReference: {fileID: 0}
     - target: {fileID: 2475020168048789350, guid: e76985acc58d7cb4b88fa5de6eafb350, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1162,7 +1174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2475020168048789350, guid: e76985acc58d7cb4b88fa5de6eafb350, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.58000004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2475020168048789350, guid: e76985acc58d7cb4b88fa5de6eafb350, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1195,6 +1207,10 @@ PrefabInstance:
     - target: {fileID: 7798487186775555705, guid: e76985acc58d7cb4b88fa5de6eafb350, type: 3}
       propertyPath: m_Name
       value: P1 Sword Block
+      objectReference: {fileID: 0}
+    - target: {fileID: 7798487186775555705, guid: e76985acc58d7cb4b88fa5de6eafb350, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7798487186775555705, guid: e76985acc58d7cb4b88fa5de6eafb350, type: 3}
       propertyPath: m_TagString

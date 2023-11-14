@@ -9,9 +9,14 @@ public class Player2Controller : MonoBehaviour
     public GameObject HSword;
     public GameObject LSword;
     public GameObject BSword;
+    public GameObject PlayerOne;
+    public Player1Controller p1Script;
+    public bool Blocking;
+
+
     void Start()
     {
-        
+        p1Script = PlayerOne.GetComponent<Player1Controller>();
     }
 
     // Update is called once per frame
@@ -40,6 +45,7 @@ public class Player2Controller : MonoBehaviour
     {
         if (Input.GetKey("8"))
         {
+            Blocking = true;
             HSword.SetActive(false);
             LSword.SetActive(false);
             BSword.SetActive(true);
@@ -50,6 +56,7 @@ public class Player2Controller : MonoBehaviour
     {
         if (Input.GetKeyDown("7"))
         {
+            Blocking = false;
             HSword.SetActive(true);
             LSword.SetActive(false);
             BSword.SetActive(false);
@@ -60,9 +67,23 @@ public class Player2Controller : MonoBehaviour
     {
         if (Input.GetKeyDown("4"))
         {
+            Blocking = false;
             HSword.SetActive(false);
             LSword.SetActive(true);
             BSword.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("P1Sword"))
+        {
+            if(p1Script.Blocking == false)
+                
+            {
+                Destroy(other.gameObject);
+            }
+            
         }
     }
 }

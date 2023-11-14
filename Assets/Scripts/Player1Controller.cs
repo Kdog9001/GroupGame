@@ -78,9 +78,9 @@ public class Player1Controller : MonoBehaviour
     {
         if (other.gameObject.CompareTag("P2Sword"))
         {
-            if (p2Script.Blocking == false)
+            if (/*p2Script.*/Blocking == false)
             {
-                Destroy(other.gameObject);
+                Destroy(/*other.*/gameObject);
             }
         }
     }

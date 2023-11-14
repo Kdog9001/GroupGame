@@ -78,10 +78,10 @@ public class Player2Controller : MonoBehaviour
     {
         if (other.gameObject.CompareTag("P1Sword"))
         {
-            if(p1Script.Blocking == false)
+            if(Blocking == false)
                 
             {
-                Destroy(other.gameObject);
+                Destroy(gameObject);
             }
             
         }

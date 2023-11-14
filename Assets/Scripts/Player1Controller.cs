@@ -11,12 +11,12 @@ public class Player1Controller : MonoBehaviour
     public GameObject BSword;
     public bool Blocking;
     public GameObject PlayerTwo;
-    public Player1Controller p2Script;
+    public Player2Controller p2Script;
 
 
     void Start()
     {
-        p2Script = PlayerTwo.GetComponent<Player1Controller>();
+        p2Script = PlayerTwo.GetComponent<Player2Controller>();
     }
 
     // Update is called once per frame

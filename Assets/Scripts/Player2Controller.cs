@@ -81,7 +81,8 @@ public class Player2Controller : MonoBehaviour
             if(Blocking == false)
                 
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                transform.Translate(Vector3.right);
             }
             
         }

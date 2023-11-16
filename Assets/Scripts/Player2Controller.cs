@@ -12,6 +12,11 @@ public class Player2Controller : MonoBehaviour
     public GameObject PlayerOne;
     public Player1Controller p1Script;
     public bool Blocking;
+    public float stabtime = 1;
+    public float stabSpeed = 15;
+    private string attack = "";
+    public bool HReady;
+    public bool LReady;
 
 
     void Start()
@@ -26,6 +31,23 @@ public class Player2Controller : MonoBehaviour
         AttackHigh();
         AttackLow();
         Block();
+        if (attack == "HS")
+        {
+            HSword.transform.Translate(Vector3.left * stabSpeed * Time.deltaTime);
+        }
+        else if (attack == "HSR")
+        {
+            HSword.transform.Translate(Vector3.right * stabSpeed * Time.deltaTime);
+        }
+        if (attack == "LS")
+        {
+            LSword.transform.Translate(Vector3.left * stabSpeed * Time.deltaTime);
+        }
+        else if (attack == "LSR")
+        {
+            LSword.transform.Translate(Vector3.right * stabSpeed * Time.deltaTime);
+        }
+
     }
 
     void Move()
@@ -54,24 +76,58 @@ public class Player2Controller : MonoBehaviour
 
     void AttackHigh()
     {
-        if (Input.GetKeyDown("7"))
+        if (Input.GetKeyDown("7") && attack == "")
         {
             Blocking = false;
             HSword.SetActive(true);
             LSword.SetActive(false);
             BSword.SetActive(false);
+            HReady = true;
+            if (HReady == true)
+            {
+                StartCoroutine("HighStab");
+            }
         }
     }
 
     void AttackLow()
     {
-        if (Input.GetKeyDown("4"))
+        if (Input.GetKeyDown(KeyCode.Alpha4) && attack == "")
         {
             Blocking = false;
             HSword.SetActive(false);
             LSword.SetActive(true);
             BSword.SetActive(false);
+            LReady = true;
+
+            if (LReady == true)
+            {
+                StartCoroutine("LowStab");
+            }
         }
+    }
+    IEnumerator HighStab()
+    {
+        HReady = false;
+        attack = "HS";
+        yield return new WaitForSeconds(stabtime);
+        attack = "HSR";
+        yield return new WaitForSeconds(stabtime);
+        attack = "";
+        //transform.Translate(Vector3.right * speed * Time.deltaTime);
+
+    }
+    IEnumerator LowStab()
+    {
+        LReady = false;
+        attack = "LS";
+        yield return new WaitForSeconds(stabtime);
+        attack = "LSR";
+
+        yield return new WaitForSeconds(stabtime);
+        attack = "";
+        //transform.Translate(Vector3.right * speed * Time.deltaTime);
+
     }
 
     private void OnTriggerEnter(Collider other)

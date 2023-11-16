@@ -15,7 +15,7 @@ public class Player1Controller : MonoBehaviour
     public Player2Controller p2Script;
     public float stabtime = 1;
     public float stabSpeed = 15;
-    private string attack;
+    private string attack = "";
     public bool HReady;
 	public bool LReady;
 
@@ -77,22 +77,39 @@ public class Player1Controller : MonoBehaviour
 
     void AttackHigh()
     {
-        if (Input.GetKeyDown("z"))
+        if (Input.GetKeyDown("z") && attack == "")
         {
             Blocking = false;
             HSword.SetActive(true);
             LSword.SetActive(false);
             BSword.SetActive(false);
             HReady = true;
-        }
-        if (HReady == true && Input.GetKeyDown("z"))
+            if (HReady == true)
         {
 			StartCoroutine("HighStab");
         }
+        }
 
+    }
+    void AttackLow()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && attack == "")
+        {
+            Blocking = false;
+            HSword.SetActive(false);
+            LSword.SetActive(true);
+            BSword.SetActive(false);
+            LReady = true;
+
+            if (LReady == true)
+            {
+                StartCoroutine("LowStab");
+            }
+        }
     }
     IEnumerator HighStab()
     {
+        HReady= false;
         attack = "HS";
         yield return new WaitForSeconds(stabtime);
         attack = "HSR";
@@ -103,6 +120,7 @@ public class Player1Controller : MonoBehaviour
     }
 	IEnumerator LowStab()
 	{
+        LReady= false;
 		attack = "LS";
 		yield return new WaitForSeconds(stabtime);
         attack = "LSR";
@@ -114,20 +132,7 @@ public class Player1Controller : MonoBehaviour
 	}
 
 
-	void AttackLow()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Blocking = false;
-            HSword.SetActive(false);
-            LSword.SetActive(true);
-            BSword.SetActive(false);
-        }
-		if (LReady == true && Input.GetKeyDown(KeyCode.Space))
-		{
-			LowStab();
-		}
-	}
+	
 
     private void OnTriggerEnter(Collider other)
     {

@@ -18,11 +18,13 @@ public class Player1Controller : MonoBehaviour
     private string attack = "";
     public bool HReady;
 	public bool LReady;
+    private GameManager gameManager;
 
 
-	void Start()
+    void Start()
     {
         p2Script = PlayerTwo.GetComponent<Player2Controller>();
+        gameManager = GameObject.Find("game manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -48,8 +50,11 @@ public class Player1Controller : MonoBehaviour
 		{
 			LSword.transform.Translate(Vector3.left * stabSpeed * Time.deltaTime);
 		}
-
-	}
+        if (transform.position.x < -25)
+        {
+            gameManager.Restart();
+        }
+    }
 
 	void Move()
     {

@@ -135,7 +135,8 @@ public class Player1Controller : MonoBehaviour
         {
             if (/*p2Script.*/Blocking == false)
             {
-                Destroy(/*other.*/gameObject);
+                //Destroy(/*other.*/gameObject);
+                transform.Translate(Vector3.left);
             }
         }
     }

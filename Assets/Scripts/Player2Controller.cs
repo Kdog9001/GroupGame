@@ -18,6 +18,7 @@ public class Player2Controller : MonoBehaviour
     public bool HReady;
     public bool LReady;
     private GameManager gameManager;
+    public bool canMove;
 
 
     void Start()
@@ -57,11 +58,11 @@ public class Player2Controller : MonoBehaviour
 
     void Move()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && canMove == true)
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) && canMove == true)
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
@@ -73,6 +74,7 @@ public class Player2Controller : MonoBehaviour
         if (Input.GetKey("8"))
         {
             Blocking = true;
+            canMove = false;
             HSword.SetActive(false);
             LSword.SetActive(false);
             BSword.SetActive(true);
@@ -93,6 +95,7 @@ public class Player2Controller : MonoBehaviour
                 StartCoroutine("HighStab");
             }
         }
+        canMove = true;
     }
 
     void AttackLow()
@@ -110,6 +113,7 @@ public class Player2Controller : MonoBehaviour
                 StartCoroutine("LowStab");
             }
         }
+        canMove = true;
     }
     IEnumerator HighStab()
     {
@@ -139,10 +143,8 @@ public class Player2Controller : MonoBehaviour
     {
         if (other.gameObject.CompareTag("P1Sword"))
         {
-            if(Blocking == false)
-                
+            if(p1Script.Blocking == false) 
             {
-                //Destroy(gameObject);
                 transform.Translate(Vector3.right);
             }
             

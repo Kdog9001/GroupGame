@@ -19,6 +19,7 @@ public class Player1Controller : MonoBehaviour
     public bool HReady;
 	public bool LReady;
     private GameManager gameManager;
+    public bool canMove;
 
 
     void Start()
@@ -58,11 +59,11 @@ public class Player1Controller : MonoBehaviour
 
 	void Move()
     {
-        if (Input.GetKey("d"))
+        if (Input.GetKey("d") && canMove == true)
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
-        if (Input.GetKey("a"))
+        if (Input.GetKey("a") && canMove == true)
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
@@ -74,6 +75,7 @@ public class Player1Controller : MonoBehaviour
         if(Input.GetKey("x")) 
         {
             Blocking = true;
+            canMove = false;
             HSword.SetActive(false);
             LSword.SetActive(false);
             BSword.SetActive(true);
@@ -85,6 +87,7 @@ public class Player1Controller : MonoBehaviour
         if (Input.GetKeyDown("z") && attack == "")
         {
             Blocking = false;
+            canMove = true;
             HSword.SetActive(true);
             LSword.SetActive(false);
             BSword.SetActive(false);
@@ -94,6 +97,7 @@ public class Player1Controller : MonoBehaviour
 			StartCoroutine("HighStab");
         }
         }
+        canMove = true;
 
     }
     void AttackLow()
@@ -101,6 +105,7 @@ public class Player1Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && attack == "")
         {
             Blocking = false;
+            canMove = true;
             HSword.SetActive(false);
             LSword.SetActive(true);
             BSword.SetActive(false);
@@ -110,7 +115,9 @@ public class Player1Controller : MonoBehaviour
             {
                 StartCoroutine("LowStab");
             }
+            
         }
+        canMove = true;
     }
     IEnumerator HighStab()
     {
@@ -143,9 +150,9 @@ public class Player1Controller : MonoBehaviour
     {
         if (other.gameObject.CompareTag("P2Sword"))
         {
-           //if (/*p2Script.*Blocking == false)
+           if (p2Script.Blocking == false)
             {
-                //Destroy(/*other.*/gameObject);
+                
                 transform.Translate(Vector3.left);
             }
         }

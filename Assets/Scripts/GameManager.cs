@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public TextMeshProUGUI Title;
+    public TextMeshProUGUI instructions;
     public GameObject PlayerOne;
     public Player1Controller p1Script;
     public GameObject PlayerTwo;
@@ -41,8 +42,9 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Title.gameObject.SetActive(false);
+        instructions.gameObject.SetActive(false);
         p1Script.canMove = true;
         p2Script.canMove = true;
     }

@@ -26,6 +26,7 @@ public class Player1Controller : MonoBehaviour
     {
         p2Script = PlayerTwo.GetComponent<Player2Controller>();
         gameManager = GameObject.Find("game manager").GetComponent<GameManager>();
+        canMove = false;
     }
 
     // Update is called once per frame
@@ -80,6 +81,13 @@ public class Player1Controller : MonoBehaviour
             LSword.SetActive(false);
             BSword.SetActive(true);
         }
+
+        if (Input.GetKeyUp("x"))
+        {
+            Blocking = false;
+            canMove = true;
+        }
+        
     }
 
     void AttackHigh()
@@ -87,7 +95,7 @@ public class Player1Controller : MonoBehaviour
         if (Input.GetKeyDown("z") && attack == "")
         {
             Blocking = false;
-            canMove = true;
+            
             HSword.SetActive(true);
             LSword.SetActive(false);
             BSword.SetActive(false);
@@ -97,7 +105,7 @@ public class Player1Controller : MonoBehaviour
 			StartCoroutine("HighStab");
         }
         }
-        canMove = true;
+        
 
     }
     void AttackLow()
@@ -105,7 +113,7 @@ public class Player1Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && attack == "")
         {
             Blocking = false;
-            canMove = true;
+            
             HSword.SetActive(false);
             LSword.SetActive(true);
             BSword.SetActive(false);
@@ -117,7 +125,7 @@ public class Player1Controller : MonoBehaviour
             }
             
         }
-        canMove = true;
+        
     }
     IEnumerator HighStab()
     {

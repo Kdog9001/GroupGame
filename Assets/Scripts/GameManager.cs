@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
             // or if (Input.GetButtonUp("Cancel")) {
             Application.Quit();
         }
-        if (Input.GetKeyDown("1"))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             GameStart();
         }

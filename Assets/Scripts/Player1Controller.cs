@@ -23,7 +23,7 @@ public class Player1Controller : MonoBehaviour
     public bool canMove;
     public bool hasPowerup;
     public GameObject Powerup;
-
+    public float knockback = 5;
     void Start()
     {
         p2Script = PlayerTwo.GetComponent<Player2Controller>();
@@ -153,10 +153,12 @@ public class Player1Controller : MonoBehaviour
 
     }
 
+    private Transform GetTransform()
+    {
+        return transform;
+    }
 
-
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(UnityEngine.Collider other)
     {
         {
             if (other.CompareTag("Powerup"))
@@ -172,15 +174,19 @@ public class Player1Controller : MonoBehaviour
             }
             {
         if (other.gameObject.CompareTag("P2Sword"))
-        {
-            if (p2Script.Blocking == false)
-            {
+                {
+                    if (p2Script.Blocking == false)
+                    {
 
-                transform.Translate(Vector3.left);
+                        transform.Translate(Vector3.left * knockback * Time.deltaTime);
+                    }
+                     if (other.CompareTag("P2sword"))
+                    {
+                        hasPowerup = true;
+                     transform.Translate(Vector3.left * 2 * knockback * Time.deltaTime);
+                    }
+return;                }
             }
-
-        }
-    }
 
    
         }

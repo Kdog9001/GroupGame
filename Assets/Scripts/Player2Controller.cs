@@ -20,6 +20,7 @@ public class Player2Controller : MonoBehaviour
     private GameManager gameManager;
     public bool canMove;
     public bool hasPowerup;
+    public float knockback = 5;
 
 
     void Start()
@@ -86,7 +87,7 @@ public class Player2Controller : MonoBehaviour
             Blocking = false;
             canMove = true;
         }
-        
+
     }
 
     void AttackHigh()
@@ -103,7 +104,7 @@ public class Player2Controller : MonoBehaviour
                 StartCoroutine("HighStab");
             }
         }
-        
+
     }
 
     void AttackLow()
@@ -121,7 +122,7 @@ public class Player2Controller : MonoBehaviour
                 StartCoroutine("LowStab");
             }
         }
-        
+
     }
     IEnumerator HighStab()
     {
@@ -154,19 +155,25 @@ public class Player2Controller : MonoBehaviour
             hasPowerup = true;
             Destroy(other.gameObject);
             StartCoroutine(PowerupCountdownRoutine());
-        } 
+        }
         IEnumerator PowerupCountdownRoutine()
         {
             yield return new WaitForSeconds(5);
-            hasPowerup= false;  
+            hasPowerup = false;
         }
         if (other.gameObject.CompareTag("P1Sword"))
         {
-            if(p1Script.Blocking == false) 
+            if (p1Script.Blocking == false)
             {
-                transform.Translate(Vector3.right);
+
+                transform.Translate(Vector3.left * knockback * Time.deltaTime);
             }
-            
+            if (other.CompareTag("P1sword"))
+            {
+                hasPowerup = true;
+                transform.Translate(Vector3.left * 2 * knockback * Time.deltaTime);
+            }
+
         }
     }
 }

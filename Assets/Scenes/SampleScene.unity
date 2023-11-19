@@ -367,6 +367,7 @@ MonoBehaviour:
   canMove: 0
   hasPowerup: 0
   Powerup: {fileID: 0}
+  knockback: 5
 --- !u!54 &304222868
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1431,6 +1432,7 @@ MonoBehaviour:
   LReady: 0
   canMove: 0
   hasPowerup: 0
+  knockback: 5
 --- !u!1001 &833276215246455145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1821,7 +1823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2813025917565429932, guid: f10956ff91861d24db4650dba2637ce5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.58000004
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 2813025917565429932, guid: f10956ff91861d24db4650dba2637ce5, type: 3}
       propertyPath: m_LocalRotation.w

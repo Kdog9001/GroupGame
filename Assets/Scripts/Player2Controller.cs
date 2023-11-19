@@ -19,6 +19,7 @@ public class Player2Controller : MonoBehaviour
     public bool LReady;
     private GameManager gameManager;
     public bool canMove;
+    public bool hasPowerup;
 
 
     void Start()
@@ -148,6 +149,17 @@ public class Player2Controller : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Powerup"))
+        {
+            hasPowerup = true;
+            Destroy(other.gameObject);
+            StartCoroutine(PowerupCountdownRoutine());
+        } 
+        IEnumerator PowerupCountdownRoutine()
+        {
+            yield return new WaitForSeconds(5);
+            hasPowerup= false;  
+        }
         if (other.gameObject.CompareTag("P1Sword"))
         {
             if(p1Script.Blocking == false) 

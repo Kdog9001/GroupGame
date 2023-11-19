@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -17,10 +18,11 @@ public class Player1Controller : MonoBehaviour
     public float stabSpeed = 15;
     private string attack = "";
     public bool HReady;
-	public bool LReady;
+    public bool LReady;
     private GameManager gameManager;
     public bool canMove;
-
+    public bool hasPowerup;
+    public GameObject Powerup;
 
     void Start()
     {
@@ -40,25 +42,25 @@ public class Player1Controller : MonoBehaviour
         {
             HSword.transform.Translate(Vector3.right * stabSpeed * Time.deltaTime);
         }
-        else if(attack == "HSR")
+        else if (attack == "HSR")
         {
-			HSword.transform.Translate(Vector3.left * stabSpeed * Time.deltaTime);
-		}
-		if (attack == "LS")
-		{
-			LSword.transform.Translate(Vector3.right * stabSpeed * Time.deltaTime);
-		}
-		else if (attack == "LSR")
-		{
-			LSword.transform.Translate(Vector3.left * stabSpeed * Time.deltaTime);
-		}
+            HSword.transform.Translate(Vector3.left * stabSpeed * Time.deltaTime);
+        }
+        if (attack == "LS")
+        {
+            LSword.transform.Translate(Vector3.right * stabSpeed * Time.deltaTime);
+        }
+        else if (attack == "LSR")
+        {
+            LSword.transform.Translate(Vector3.left * stabSpeed * Time.deltaTime);
+        }
         if (transform.position.x < -25)
         {
             gameManager.Restart();
         }
     }
 
-	void Move()
+    void Move()
     {
         if (Input.GetKey("d") && canMove == true)
         {
@@ -73,7 +75,7 @@ public class Player1Controller : MonoBehaviour
 
     void Block()
     {
-        if(Input.GetKey("x")) 
+        if (Input.GetKey("x"))
         {
             Blocking = true;
             canMove = false;
@@ -87,7 +89,7 @@ public class Player1Controller : MonoBehaviour
             Blocking = false;
             canMove = true;
         }
-        
+
     }
 
     void AttackHigh()
@@ -95,17 +97,17 @@ public class Player1Controller : MonoBehaviour
         if (Input.GetKeyDown("z") && attack == "")
         {
             Blocking = false;
-            
+
             HSword.SetActive(true);
             LSword.SetActive(false);
             BSword.SetActive(false);
             HReady = true;
             if (HReady == true)
-        {
-			StartCoroutine("HighStab");
+            {
+                StartCoroutine("HighStab");
+            }
         }
-        }
-        
+
 
     }
     void AttackLow()
@@ -113,7 +115,7 @@ public class Player1Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && attack == "")
         {
             Blocking = false;
-            
+
             HSword.SetActive(false);
             LSword.SetActive(true);
             BSword.SetActive(false);
@@ -123,13 +125,13 @@ public class Player1Controller : MonoBehaviour
             {
                 StartCoroutine("LowStab");
             }
-            
+
         }
-        
+
     }
     IEnumerator HighStab()
     {
-        HReady= false;
+        HReady = false;
         attack = "HS";
         yield return new WaitForSeconds(stabtime);
         attack = "HSR";
@@ -138,32 +140,51 @@ public class Player1Controller : MonoBehaviour
         //transform.Translate(Vector3.right * speed * Time.deltaTime);
 
     }
-	IEnumerator LowStab()
-	{
-        LReady= false;
-		attack = "LS";
-		yield return new WaitForSeconds(stabtime);
+    IEnumerator LowStab()
+    {
+        LReady = false;
+        attack = "LS";
+        yield return new WaitForSeconds(stabtime);
         attack = "LSR";
 
-		yield return new WaitForSeconds(stabtime);
-		attack = "";
-		//transform.Translate(Vector3.right * speed * Time.deltaTime);
+        yield return new WaitForSeconds(stabtime);
+        attack = "";
+        //transform.Translate(Vector3.right * speed * Time.deltaTime);
 
-	}
+    }
 
 
-	
+
 
     private void OnTriggerEnter(Collider other)
     {
+        {
+            if (other.CompareTag("Powerup"))
+            {
+                hasPowerup = true;
+                Destroy(other.gameObject);
+                StartCoroutine(PowerupCountdownRoutine());
+            }
+            IEnumerator PowerupCountdownRoutine()
+            {
+                yield return new WaitForSeconds(5);
+                hasPowerup = false;
+            }
+            {
         if (other.gameObject.CompareTag("P2Sword"))
         {
-           if (p2Script.Blocking == false)
+            if (p2Script.Blocking == false)
             {
-                
+
                 transform.Translate(Vector3.left);
             }
+
         }
     }
 
+   
+        }
+    }
 }
+
+    

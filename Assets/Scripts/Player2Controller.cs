@@ -168,10 +168,10 @@ public class Player2Controller : MonoBehaviour
 
                 transform.Translate(Vector3.left * knockback * Time.deltaTime);
             }
-            if (other.CompareTag("P1sword"))
+            if (other.CompareTag("P1Sword"))
             {
                 hasPowerup = true;
-                transform.Translate(Vector3.left * 2 * knockback * Time.deltaTime);
+                transform.Translate(Vector3.right * 2 * knockback * Time.deltaTime);
             }
 
         }

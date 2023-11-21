@@ -180,7 +180,7 @@ public class Player1Controller : MonoBehaviour
 
                         transform.Translate(Vector3.left * knockback * Time.deltaTime);
                     }
-                     if (other.CompareTag("P2sword"))
+                     if (other.CompareTag("P2Sword"))
                     {
                         hasPowerup = true;
                      transform.Translate(Vector3.left * 2 * knockback * Time.deltaTime);

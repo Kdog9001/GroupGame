@@ -176,14 +176,14 @@ public class Player2Controller : MonoBehaviour
         }
         if (other.CompareTag("P1Sword"))
         {
-            if (p1Script.Blocking == false)
+            if (Blocking == false)
             {
                 transform.Translate(Vector3.right);// * knockback * Time.deltaTime);
             }
             if (other.gameObject.CompareTag("P1Sword"))
             {
                 hasPowerup = true;
-                transform.Translate(Vector3.right);// * 2 * knockback * Time.deltaTime);
+              //transform.Translate(Vector3.right) * 2 * knockback * Time.deltaTime);
             }
 
         }

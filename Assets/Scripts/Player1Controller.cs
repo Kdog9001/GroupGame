@@ -30,6 +30,7 @@ public class Player1Controller : MonoBehaviour
     public TextMeshProUGUI P1win;
     public Vector3 originalPos;
     public Vector3 p1Pos;
+    public string p2w;
     void Start()
     {
         p2Script = PlayerTwo.GetComponent<Player2Controller>();
@@ -104,7 +105,7 @@ public class Player1Controller : MonoBehaviour
 
         if (Input.GetKeyUp("x"))
         {
-            Blocking = false;
+        Blocking=false;
             canMove = true;
         }
 
@@ -126,8 +127,8 @@ public class Player1Controller : MonoBehaviour
             }
         }
     }
-    
-    
+
+
     void AttackLow()
     {
         if (Input.GetKeyDown(KeyCode.Space) && attack == "")
@@ -190,29 +191,43 @@ public class Player1Controller : MonoBehaviour
                 yield return new WaitForSeconds(5);
                 hasPowerup = false;
             }
+
+            if (other.CompareTag("P2Sword"))
             {
-                if (other.CompareTag("P2Sword"))
+                if (Blocking == false)
                 {
-                    if (p2Script.Blocking == false)
-                    {
-                        transform.Translate(Vector3.left);
-                    }
-                     if (other.gameObject.CompareTag("P2Sword"))
-                    {
-                        hasPowerup = true;
-                        transform.Translate(Vector3.left* 2 * knockback * Time.deltaTime);
-                    }
-                    return;                
+                    transform.Translate(Vector3.left);
                 }
+                if (other.gameObject.CompareTag("P2Sword"))
+                {
+                    hasPowerup = true;
+                  //transform.Translate(Vector3.left * 2 * knockback * Time.deltaTime);
+                }
+                
             }
             
+
         }
-   
+
     }
     public void UpdateScore(int scoretoadd)
-            {
-                p1score += scoretoadd;
-                P1Score.text = "Player One Deaths: " + p1score;
-            }
-}
+    {
+        p1score += scoretoadd;
+        p2w = "player Two Wins!";
+        P1Score.text = "Player One Deaths: " + p1score;
+        if (p1score > 3)
+        {
+            StartCoroutine(ShowMessage(p2w, 5));
 
+            IEnumerator ShowMessage(string message, float delay)
+            {
+                P1win.text = message;
+                P1win.enabled = false;
+                yield return new WaitForSeconds(5);
+                P1win.enabled = true;
+            }
+
+        }
+    }
+}
+    

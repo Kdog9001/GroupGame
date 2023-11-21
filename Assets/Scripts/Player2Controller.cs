@@ -22,7 +22,7 @@ public class Player2Controller : MonoBehaviour
     public bool canMove;
     public bool hasPowerup;
     public float knockback = 5;
-    private int p2score;
+    private int p2score = 0;
     public TextMeshProUGUI P2Score;
     public TextMeshProUGUI P2win;
     public Vector3 originalPos;
@@ -64,7 +64,7 @@ public class Player2Controller : MonoBehaviour
         }
         if (transform.position.x > 25)
         {
-            p2score = 0;
+            //p2score;
             UpdateScore(1);
             gameObject.transform.position = originalPos;
             PlayerOne.transform.position = p1Script.p1Pos;
@@ -190,8 +190,8 @@ public class Player2Controller : MonoBehaviour
     }
     public void UpdateScore(int scoretoadd)
             {
-                p2score += scoretoadd;
-                P2Score.text = "Player One: " + p2score;
+                p2score = scoretoadd + p2score;
+                P2Score.text = "Player Two Deaths: " + p2score;
             }
 }
 

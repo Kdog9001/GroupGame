@@ -25,7 +25,7 @@ public class Player1Controller : MonoBehaviour
     public bool hasPowerup;
     public GameObject Powerup;
     public float knockback = 5;
-    private int p1score;
+    private int p1score = 0;
     public TextMeshProUGUI P1Score;
     public TextMeshProUGUI P1win;
     public Vector3 originalPos;
@@ -66,7 +66,7 @@ public class Player1Controller : MonoBehaviour
         {
             //add +1 to score everytime other player when player is other player is at 2 or three wins then the game fully restarts
             //make it when a player has enough wins a message appears saying which player wins and the score is reset
-            p1score = 0;
+            //p1score = 0;
             UpdateScore(1);
             gameObject.transform.position = originalPos;
             PlayerTwo.transform.position = p2Script.p2Pos;
@@ -212,7 +212,7 @@ public class Player1Controller : MonoBehaviour
     public void UpdateScore(int scoretoadd)
             {
                 p1score += scoretoadd;
-                P1Score.text = "Player One: " + p1score;
+                P1Score.text = "Player One Deaths: " + p1score;
             }
 }
 

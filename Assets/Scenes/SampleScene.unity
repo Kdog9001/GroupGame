@@ -372,6 +372,8 @@ MonoBehaviour:
   knockback: 5
   P1Score: {fileID: 412903242}
   P1win: {fileID: 1325534701}
+  originalPos: {x: 0, y: 0, z: 0}
+  p1Pos: {x: 0, y: 0, z: 0}
 --- !u!54 &304222868
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -456,7 +458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Player One: '
+  m_text: 'Player One Deaths: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1295,7 +1297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Player Two: '
+  m_text: 'Player Two Deaths: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1979,6 +1981,8 @@ MonoBehaviour:
   knockback: 5
   P2Score: {fileID: 1478282292}
   P2win: {fileID: 1588493348}
+  originalPos: {x: 0, y: 0, z: 0}
+  p2Pos: {x: 0, y: 0, z: 0}
 --- !u!1001 &833276215246455145
 PrefabInstance:
   m_ObjectHideFlags: 0

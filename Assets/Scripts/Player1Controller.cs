@@ -99,7 +99,7 @@ public class Player1Controller : MonoBehaviour
         if (Input.GetKeyUp("x"))
         {
             Blocking = false;
-            canMove = false;
+            canMove = true;
         }
 
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player2Controller : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class Player2Controller : MonoBehaviour
     public bool canMove;
     public bool hasPowerup;
     public float knockback = 5;
+    private int p2score;
+    public TextMeshProUGUI P2Score;
+    public TextMeshProUGUI P2win;
 
 
     void Start()
@@ -55,6 +59,8 @@ public class Player2Controller : MonoBehaviour
         }
         if (transform.position.x > 25)
         {
+            p2score = 0;
+            UpdateScore(1);
             gameManager.Restart();
         }
     }
@@ -161,19 +167,24 @@ public class Player2Controller : MonoBehaviour
             yield return new WaitForSeconds(5);
             hasPowerup = false;
         }
-        if (other.gameObject.CompareTag("P1Sword"))
+        if (other.CompareTag("P1Sword"))
         {
             if (p1Script.Blocking == false)
             {
-
-                transform.Translate(Vector3.left * knockback * Time.deltaTime);
+                transform.Translate(Vector3.right);// * knockback * Time.deltaTime);
             }
-            if (other.CompareTag("P1sword"))
+            if (other.gameObject.CompareTag("P1Sword"))
             {
                 hasPowerup = true;
-                transform.Translate(Vector3.left * 2 * knockback * Time.deltaTime);
+                transform.Translate(Vector3.right);// * 2 * knockback * Time.deltaTime);
             }
 
         }
     }
+    public void UpdateScore(int scoretoadd)
+            {
+                p2score += scoretoadd;
+                P2Score.text = "Player One: " + p2score;
+            }
 }
+

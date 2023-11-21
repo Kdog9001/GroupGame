@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using TMPro;
 
 public class Player1Controller : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class Player1Controller : MonoBehaviour
     public bool hasPowerup;
     public GameObject Powerup;
     public float knockback = 5;
+    private int p1score;
+    public TextMeshProUGUI P1Score;
+    public TextMeshProUGUI P1win;
     void Start()
     {
         p2Script = PlayerTwo.GetComponent<Player2Controller>();
@@ -56,7 +60,15 @@ public class Player1Controller : MonoBehaviour
         }
         if (transform.position.x < -25)
         {
-            gameManager.Restart();
+            //add +1 to score everytime other player when player is other player is at 2 or three wins then the game fully restarts
+            //make it when a player has enough wins a message appears saying which player wins and the score is reset
+            p1score = 0;
+            UpdateScore(1);
+            //if (p1score == 2)
+            //{
+                //P1win.gameObject.SetActive(true);
+                //gameManager.Restart();
+            //}
         }
     }
 
@@ -87,7 +99,7 @@ public class Player1Controller : MonoBehaviour
         if (Input.GetKeyUp("x"))
         {
             Blocking = false;
-            canMove = true;
+            canMove = false;
         }
 
     }
@@ -107,9 +119,9 @@ public class Player1Controller : MonoBehaviour
                 StartCoroutine("HighStab");
             }
         }
-
-
     }
+    
+    
     void AttackLow()
     {
         if (Input.GetKeyDown(KeyCode.Space) && attack == "")
@@ -173,24 +185,28 @@ public class Player1Controller : MonoBehaviour
                 hasPowerup = false;
             }
             {
-        if (other.gameObject.CompareTag("P2Sword"))
+                if (other.CompareTag("P2Sword"))
                 {
                     if (p2Script.Blocking == false)
                     {
-
-                        transform.Translate(Vector3.left * knockback * Time.deltaTime);
+                        transform.Translate(Vector3.left);
                     }
-                     if (other.CompareTag("P2sword"))
+                     if (other.gameObject.CompareTag("P2Sword"))
                     {
                         hasPowerup = true;
-                     transform.Translate(Vector3.left * 2 * knockback * Time.deltaTime);
+                        transform.Translate(Vector3.left* 2 * knockback * Time.deltaTime);
                     }
-return;                }
+                    return;                
+                }
             }
-
-   
+            
         }
+   
     }
+    public void UpdateScore(int scoretoadd)
+            {
+                p1score += scoretoadd;
+                P1Score.text = "Player One: " + p1score;
+            }
 }
 
-    

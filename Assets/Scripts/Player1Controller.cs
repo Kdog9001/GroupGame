@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using TMPro;
 
 public class Player1Controller : MonoBehaviour
 {
@@ -24,11 +25,18 @@ public class Player1Controller : MonoBehaviour
     public bool hasPowerup;
     public GameObject Powerup;
     public float knockback = 5;
+    private int p1score = 0;
+    public TextMeshProUGUI P1Score;
+    public TextMeshProUGUI P1win;
+    public Vector3 originalPos;
+    public Vector3 p1Pos;
     void Start()
     {
         p2Script = PlayerTwo.GetComponent<Player2Controller>();
         gameManager = GameObject.Find("game manager").GetComponent<GameManager>();
         canMove = false;
+        originalPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+        p1Pos = originalPos;
     }
 
     // Update is called once per frame
@@ -56,7 +64,17 @@ public class Player1Controller : MonoBehaviour
         }
         if (transform.position.x < -25)
         {
-            gameManager.Restart();
+            //add +1 to score everytime other player when player is other player is at 2 or three wins then the game fully restarts
+            //make it when a player has enough wins a message appears saying which player wins and the score is reset
+            //p1score = 0;
+            UpdateScore(1);
+            gameObject.transform.position = originalPos;
+            PlayerTwo.transform.position = p2Script.p2Pos;
+            //if (p1score == 2)
+            //{
+            //P1win.gameObject.SetActive(true);
+            //gameManager.Restart();
+            //}
         }
     }
 
@@ -107,9 +125,9 @@ public class Player1Controller : MonoBehaviour
                 StartCoroutine("HighStab");
             }
         }
-
-
     }
+    
+    
     void AttackLow()
     {
         if (Input.GetKeyDown(KeyCode.Space) && attack == "")
@@ -173,24 +191,28 @@ public class Player1Controller : MonoBehaviour
                 hasPowerup = false;
             }
             {
-        if (other.gameObject.CompareTag("P2Sword"))
+                if (other.CompareTag("P2Sword"))
                 {
                     if (p2Script.Blocking == false)
                     {
-
-                        transform.Translate(Vector3.left * knockback * Time.deltaTime);
+                        transform.Translate(Vector3.left);
                     }
-                     if (other.CompareTag("P2Sword"))
+                     if (other.gameObject.CompareTag("P2Sword"))
                     {
                         hasPowerup = true;
-                     transform.Translate(Vector3.left * 2 * knockback * Time.deltaTime);
+                        transform.Translate(Vector3.left* 2 * knockback * Time.deltaTime);
                     }
-return;                }
+                    return;                
+                }
             }
-
-   
+            
         }
+   
     }
+    public void UpdateScore(int scoretoadd)
+            {
+                p1score += scoretoadd;
+                P1Score.text = "Player One Deaths: " + p1score;
+            }
 }
 
-    

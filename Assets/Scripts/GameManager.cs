@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public TextMeshProUGUI Title;
     public TextMeshProUGUI instructions;
+    public TextMeshProUGUI P2Score;
+    public TextMeshProUGUI P1Score;
     public GameObject PlayerOne;
     public Player1Controller p1Script;
     public GameObject PlayerTwo;
@@ -45,7 +47,10 @@ public class GameManager : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Title.gameObject.SetActive(false);
         instructions.gameObject.SetActive(false);
+        P1Score.gameObject.SetActive(true);
+        P2Score.gameObject.SetActive(true);
         p1Script.canMove = true;
         p2Script.canMove = true;
+        
     }
 }

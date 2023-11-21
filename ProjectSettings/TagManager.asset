@@ -6,6 +6,7 @@ TagManager:
   tags:
   - P2Sword
   - P1Sword
+  - Powerup
   layers:
   - Default
   - TransparentFX

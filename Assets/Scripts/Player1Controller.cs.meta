@@ -3,7 +3,12 @@ guid: 67f81603680c4b542bff584fdc60a35d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - HSword: {fileID: 1109198625117423907, guid: 6e73cb0e6fc873c43a1a4a3644e2f513, type: 3}
+  - LSword: {fileID: 43529516413509126, guid: e33a6b9b421f0094eb0d9b65ad16f98a, type: 3}
+  - BSword: {fileID: 7798487186775555705, guid: e76985acc58d7cb4b88fa5de6eafb350, type: 3}
+  - PlayerTwo: {instanceID: 0}
+  - p2Script: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -28,11 +28,15 @@ public class Player1Controller : MonoBehaviour
     private int p1score;
     public TextMeshProUGUI P1Score;
     public TextMeshProUGUI P1win;
+    public Vector3 originalPos;
+    public Vector3 p1Pos;
     void Start()
     {
         p2Script = PlayerTwo.GetComponent<Player2Controller>();
         gameManager = GameObject.Find("game manager").GetComponent<GameManager>();
         canMove = false;
+        originalPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+        p1Pos = originalPos;
     }
 
     // Update is called once per frame
@@ -64,10 +68,12 @@ public class Player1Controller : MonoBehaviour
             //make it when a player has enough wins a message appears saying which player wins and the score is reset
             p1score = 0;
             UpdateScore(1);
+            gameObject.transform.position = originalPos;
+            PlayerTwo.transform.position = p2Script.p2Pos;
             //if (p1score == 2)
             //{
-                //P1win.gameObject.SetActive(true);
-                //gameManager.Restart();
+            //P1win.gameObject.SetActive(true);
+            //gameManager.Restart();
             //}
         }
     }

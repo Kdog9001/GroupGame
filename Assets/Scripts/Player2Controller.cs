@@ -25,6 +25,9 @@ public class Player2Controller : MonoBehaviour
     private int p2score;
     public TextMeshProUGUI P2Score;
     public TextMeshProUGUI P2win;
+    public Vector3 originalPos;
+    public Vector3 p2Pos;
+    
 
 
     void Start()
@@ -32,6 +35,8 @@ public class Player2Controller : MonoBehaviour
         p1Script = PlayerOne.GetComponent<Player1Controller>();
         gameManager = GameObject.Find("game manager").GetComponent<GameManager>();
         canMove = false;
+        originalPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+        p2Pos = originalPos;
     }
 
     // Update is called once per frame
@@ -61,7 +66,9 @@ public class Player2Controller : MonoBehaviour
         {
             p2score = 0;
             UpdateScore(1);
-            gameManager.Restart();
+            gameObject.transform.position = originalPos;
+            PlayerOne.transform.position = p1Script.p1Pos;
+            //gameManager.Restart();
         }
     }
 
